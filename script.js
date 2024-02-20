@@ -20,11 +20,15 @@ const addButtonEl = document.getElementById("add-button");
 const shoppingListEl = document.getElementById("shopping-list");
 
 addButtonEl.addEventListener("click", function () {
-  let inputValue = inputFieldEl.value;
+  let inputValue = inputFieldEl.value.trim(); // Trim removes leading and trailing whitespaces
 
-  push(shoppingListInDB, inputValue);
-
-  clearInputFieldEl();
+  if (inputValue !== "") {
+    push(shoppingListInDB, inputValue);
+    clearInputFieldEl();
+  } else {
+    // You can add an alert or any other feedback to inform the user
+    alert("Please enter a valid value before adding to the cart");
+  }
 });
 
 onValue(shoppingListInDB, function (snapshot) {
